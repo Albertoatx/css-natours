@@ -7,6 +7,7 @@ Dark green: #28b485
 
 */
 
+/* UNIVERSAL SELECTOR */
 /* Make a simple reset of browser defaults by using the universal selector */
 /* 'border-box': include the padding and border in an element's total width and height */
 * {
@@ -62,18 +63,79 @@ body{
 .heading-primary{
   color: white;
   text-transform: uppercase;
+
+  backface-visibility: hidden;
 }
 
+/* make <span>, which is an inline element, a block */
 .heading-primary-main{
-  display: block;
+  display: block; 
   font-size: 60px;
   font-weight: 700; 
   letter-spacing: 35px;
+
+  animation-name: moveInLeft;
+  animation-duration: 2s;
+  animation-timing-function: ease-out;
+  /* animation-delay: 0s; */
+  /* animation-iteration-count: 3; */
 }
 
+/* make <span>, which is an inline element, a block */
 .heading-primary-sub{
   display: block;
   font-size: 20px;
   font-weight: 400; 
   letter-spacing: 17.4px;
+
+  animation: moveInRight 2s ease-out;
+}
+
+/* ANIMATION DEFINITION ********************************************************/
+/* For the browser performance is always best to only animate 2 properties: 
+   - opacity (0 is invisible)
+   - transform
+
+   0%:    at the beginning of our animation
+   100%:  at the end of our animation
+
+   For an animation of an HTML element to work we have to specify at least 
+   these 2 properties in that element: 
+   - animation-name
+   - animation-duration
+
+********************************************************************************/
+@keyframes moveInLeft{
+
+  0%{
+    opacity: 0;  
+    transform: translateX(-100px);
+  }
+
+  80%{
+    transform: translateX(10px);
+  }
+
+  100%{
+    opacity: 1;
+    transform: translateX(0); 
+  }
+}
+
+
+@keyframes moveInRight{
+
+  0%{
+    opacity: 0;  
+    transform: translateX(100px);
+  }
+
+  80%{
+    transform: translateX(-10px);
+  }
+
+  100%{
+    opacity: 1;
+    transform: translateX(0); 
+  }
 }
