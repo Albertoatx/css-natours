@@ -10,20 +10,32 @@ Dark green: #28b485
 /* UNIVERSAL SELECTOR */
 /* Make a simple reset of browser defaults by using the universal selector */
 /* 'border-box': include the padding and border in an element's total width and height */
-* {
+*,
+*::after,
+*::before {
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
+  /* box-sizing: border-box; */ 
+  box-sizing: inherit; /* box-sizing by default is not inherited, so we force it */
+}
+
+/* Set our root font size (1rem will be this root font size)                        
+/* DON'T define it in pixels! That will override the browser font size setting
+ * that the user can manually change in the settings (for example for bad sight)  
+ * By default the browser font size is 16px, if we want 10px (10px / 16px = 0.625)
+ */
+html{
+  font-size: 62.5%;
 }
 
 /* Define Font properties at BODY level (all the webpage) */
 body{
   font-family:"Lato", sans-serif;
   font-weight: 400;
-  font-size: 16px;
   line-height: 1.7;
   color: #777;
-  padding: 30px; 
+  padding: 3rem; 
+  box-sizing: border-box;
 }
 
 /* 95vh: Height of the element to be 95% of the viewport height */
@@ -44,12 +56,12 @@ body{
 /* top & left position is from 'logo-box' parent element (the .header) */
 .logo-box{
    position: absolute;
-   top: 40px;
-   left: 40px;
+   top: 4rem;
+   left: 4rem;
 }
 
 .logo{
-  height: 35px; /* the width will scale accordingly */
+  height: 3.5rem; /* the width will scale accordingly */
 }
 
 /* top & left position is from 'text-box' parent element (the .header) */
@@ -57,7 +69,7 @@ body{
   position: absolute;
   top: 40%;
   left: 50%;
-  transform: translate(-50%, -50%); /* in relation to the element itself */
+  transform: translate(-49%, -49%); /* in relation to the element itself */
   text-align: center;
 }
 
@@ -66,15 +78,15 @@ body{
   text-transform: uppercase;
 
   backface-visibility: hidden;
-  margin-bottom: 60px;
+  margin-bottom: 6rem;
 }
 
 /* make <span>, which is an inline element, a block */
 .heading-primary-main{
   display: block; 
-  font-size: 60px;
+  font-size: 6rem;
   font-weight: 700; 
-  letter-spacing: 35px;
+  letter-spacing: 3.5rem;
 
   animation-name: moveInLeft;
   animation-duration: 2s;
@@ -86,9 +98,9 @@ body{
 /* make <span>, which is an inline element, a block */
 .heading-primary-sub{
   display: block;
-  font-size: 20px;
+  font-size: 2rem;
   font-weight: 400; 
-  letter-spacing: 17.4px;
+  letter-spacing: 1.75rem;
 
   animation: moveInRight 2s ease-out;
 }
@@ -98,22 +110,23 @@ body{
 .btn:visited{
   text-transform: uppercase;
   text-decoration: none;
-  padding: 15px 40px;
+  padding: 1.5rem 4rem;
   display: inline-block; /* make <a> tag, which is inline, an inline-block */
-  border-radius: 100px;
+  border-radius: 10rem;
 
   transition: all .2s;  /* animation */
   position: relative;
+  font-size: 1.6rem;
 }
 
 .btn:hover{
   transform: translateY(-3px); /* to move up the button */ 
-  box-shadow: 0 10px 20px rgba(0, 0, 0, .2); /* subtle shadow: x, y, blur, color */
+  box-shadow: 0 1rem 2rem rgba(0, 0, 0, .2); /* subtle shadow: x, y, blur, color */
 }
 
 .btn:active{
   transform: translateY(-1px); /* to move up the button */ 
-  box-shadow: 0 5px 10px rgba(0, 0, 0, .2); /* less shadow: x, y, blur, color */
+  box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .2); /* less shadow: x, y, blur, color */
 }
 
 .btn-white{
@@ -129,7 +142,7 @@ body{
 .btn::after{
   content: '';
   display: inline-block; 
-  border-radius: 100px;
+  border-radius: 10rem;
   height: 100%;
   width: 100%;
 
@@ -177,11 +190,11 @@ body{
 
   0%{
     opacity: 0;  
-    transform: translateX(-100px);
+    transform: translateX(-10rem);
   }
 
   80%{
-    transform: translateX(10px);
+    transform: translateX(1rem);
   }
 
   100%{
@@ -195,11 +208,11 @@ body{
 
   0%{
     opacity: 0;  
-    transform: translateX(100px);
+    transform: translateX(10rem);
   }
 
   80%{
-    transform: translateX(-10px);
+    transform: translateX(-1rem);
   }
 
   100%{
@@ -213,7 +226,7 @@ body{
 
   0%{
     opacity: 0;  
-    transform: translateY(90px);
+    transform: translateY(9rem);
   }
 
   100%{
