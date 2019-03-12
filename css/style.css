@@ -103,6 +103,7 @@ body{
   border-radius: 100px;
 
   transition: all .2s;  /* animation */
+  position: relative;
 }
 
 .btn:hover{
@@ -120,7 +121,42 @@ body{
   color: #777;
 }
 
+/* Add an element that looks exactly like the button that we already have.      
+ * The '::after' pseudo element is treated like a child of the 'btn', therefore
+ *  height:100% will be the same dimension that the 'btn' (its parent) 
+ * This is the initial state                 
+ */
+.btn::after{
+  content: '';
+  display: inline-block; 
+  border-radius: 100px;
+  height: 100%;
+  width: 100%;
 
+  /* to put it behind our actual button */
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1; 
+
+  transition: all .4s;  /* animation */
+}
+
+.btn-white::after{
+  background-color: #fff;
+  color: #777;
+}
+
+/* make the pseudo button visible when we hover (make it bigger and fade it out) */
+.btn:hover::after{ 
+  transform: scaleX(1.4) scaleY(1.6); 
+  opacity: 0;
+}
+
+.btn-animated{
+  animation: moveInFromBottom .5s ease-out .75s;
+  animation-fill-mode: backwards;
+}
 
 
 /* ANIMATION DEFINITION ********************************************************/
@@ -169,5 +205,19 @@ body{
   100%{
     opacity: 1;
     transform: translateX(0); 
+  }
+}
+
+
+@keyframes moveInFromBottom{
+
+  0%{
+    opacity: 0;  
+    transform: translateY(90px);
+  }
+
+  100%{
+    opacity: 1;
+    transform: translateY(0); 
   }
 }
