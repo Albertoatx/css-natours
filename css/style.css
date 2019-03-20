@@ -42,114 +42,103 @@ body {
   background-size: cover;
   background-position: top;
   clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
-  position: relative; }
-
-/* top & left position is from 'logo-box' parent element (the .header) */
-.header__logo-box {
-  position: absolute;
-  top: 4rem;
-  left: 4rem; }
-
-.header__logo {
-  height: 3.5rem;
-  /* the width will scale accordingly */ }
-
-/* top & left position is from 'text-box' parent element (the .header) */
-.header__text-box {
-  position: absolute;
-  top: 40%;
-  left: 50%;
-  transform: translate(-49%, -49%);
-  /* in relation to the element itself */
-  text-align: center; }
+  position: relative;
+  /* top & left position is from 'logo-box' parent element (the .header) */
+  /* top & left position is from 'text-box' parent element (the .header) */ }
+  .header__logo-box {
+    position: absolute;
+    top: 4rem;
+    left: 4rem; }
+  .header__logo {
+    height: 3.5rem;
+    /* the width will scale accordingly */ }
+  .header__text-box {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-49%, -49%);
+    /* in relation to the element itself */
+    text-align: center; }
 
 .heading-primary {
   color: white;
   text-transform: uppercase;
   backface-visibility: hidden;
-  margin-bottom: 6rem; }
+  margin-bottom: 6rem;
+  /* heading-primary--main */
+  /* heading-primary--sub */ }
+  .heading-primary--main {
+    display: block;
+    font-size: 6rem;
+    font-weight: 700;
+    letter-spacing: 3.5rem;
+    animation-name: moveInLeft;
+    animation-duration: 2s;
+    animation-timing-function: ease-out;
+    /* animation-delay: 0s; */
+    /* animation-iteration-count: 3; */ }
+  .heading-primary--sub {
+    display: block;
+    font-size: 2rem;
+    font-weight: 400;
+    letter-spacing: 1.75rem;
+    animation: moveInRight 2s ease-out; }
 
-/* make <span>, which is an inline element, a block */
-.heading-primary--main {
-  display: block;
-  font-size: 6rem;
-  font-weight: 700;
-  letter-spacing: 3.5rem;
-  animation-name: moveInLeft;
-  animation-duration: 2s;
-  animation-timing-function: ease-out;
-  /* animation-delay: 0s; */
-  /* animation-iteration-count: 3; */ }
-
-/* make <span>, which is an inline element, a block */
-.heading-primary--sub {
-  display: block;
-  font-size: 2rem;
-  font-weight: 400;
-  letter-spacing: 1.75rem;
-  animation: moveInRight 2s ease-out; }
-
-/* pseudo-class ':link' will be the initial state */
-.btn:link,
-.btn:visited {
-  text-transform: uppercase;
-  text-decoration: none;
-  padding: 1.5rem 4rem;
-  display: inline-block;
-  /* make <a> tag, which is inline, an inline-block */
-  border-radius: 10rem;
-  transition: all .2s;
-  /* animation */
-  position: relative;
-  font-size: 1.6rem; }
-
-.btn:hover {
-  transform: translateY(-3px);
-  /* to move up the button */
-  box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2);
-  /* subtle shadow: x, y, blur, color */ }
-
-.btn:active {
-  transform: translateY(-1px);
-  /* to move up the button */
-  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
-  /* less shadow: x, y, blur, color */ }
-
-.btn--white {
-  background-color: #fff;
-  color: #777; }
-
-/* Add an element that looks exactly like the button that we already have.      
- * The '::after' pseudo element is treated like a child of the 'btn', therefore
- *  height:100% will be the same dimension that the 'btn' (its parent) 
- * This is the initial state                 
- */
-.btn::after {
-  content: '';
-  display: inline-block;
-  border-radius: 10rem;
-  height: 100%;
-  width: 100%;
-  /* to put it behind our actual button */
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: -1;
-  transition: all .4s;
-  /* animation */ }
-
-.btn--white::after {
-  background-color: #fff;
-  color: #777; }
-
-/* make the pseudo button visible when we hover (make it bigger and fade it out) */
-.btn:hover::after {
-  transform: scaleX(1.4) scaleY(1.6);
-  opacity: 0; }
-
-.btn--animated {
-  animation: moveInFromBottom .5s ease-out .75s;
-  animation-fill-mode: backwards; }
+.btn {
+  /* pseudo-class ':link' will be the initial state */
+  /* Add an element that looks exactly like the button that we already have.      
+  * The '::after' pseudo element is treated like a child of the 'btn', therefore
+  *  height:100% will be the same dimension that the 'btn' (its parent) 
+  * This is the initial state                 
+  */ }
+  .btn:link, .btn:visited {
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 1.5rem 4rem;
+    display: inline-block;
+    /* make <a> tag, which is inline, an inline-block */
+    border-radius: 10rem;
+    transition: all .2s;
+    /* animation */
+    position: relative;
+    font-size: 1.6rem; }
+  .btn:hover {
+    transform: translateY(-3px);
+    /* to move up the button */
+    box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2);
+    /* subtle shadow: x, y, blur, color */
+    /* make the pseudo button visible when we hover (make it bigger and fade it out) */ }
+    .btn:hover::after {
+      transform: scaleX(1.4) scaleY(1.6);
+      opacity: 0; }
+  .btn:active {
+    transform: translateY(-1px);
+    /* to move up the button */
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
+    /* less shadow: x, y, blur, color */ }
+  .btn--white {
+    background-color: #fff;
+    color: #777;
+    /* .btn--white::after   */ }
+    .btn--white::after {
+      background-color: #fff;
+      color: #777; }
+  .btn::after {
+    content: '';
+    display: inline-block;
+    border-radius: 10rem;
+    height: 100%;
+    width: 100%;
+    /* to put it behind our actual button */
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    transition: all .4s;
+    /* animation */ }
+  .btn--animated {
+    animation: moveInFromBottom .5s ease-out .75s;
+    animation-fill-mode: backwards; }
 
 /* ANIMATION DEFINITION ********************************************************/
 /* For the browser performance is always best to only animate 2 properties: 

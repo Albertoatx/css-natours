@@ -13,6 +13,7 @@ $color-primary-dark: #28b485;
 
 $color-grey-dark: #777;
 $color-white: #fff;
+$color-black: #000;
 
 
 /* UNIVERSAL SELECTOR */
@@ -59,27 +60,28 @@ body{
   clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
 
   position: relative;
-}
 
-/* top & left position is from 'logo-box' parent element (the .header) */
-.header__logo-box{
-   position: absolute;
-   top: 4rem;
-   left: 4rem;
-}
+  /* top & left position is from 'logo-box' parent element (the .header) */
+  &__logo-box{  // this is the same as 'header__logo-box'
+    position: absolute;
+    top: 4rem;
+    left: 4rem;
+  }
 
-.header__logo{
+  &__logo{
   height: 3.5rem; /* the width will scale accordingly */
-}
+  }
 
-/* top & left position is from 'text-box' parent element (the .header) */
-.header__text-box{
+  /* top & left position is from 'text-box' parent element (the .header) */
+  &__text-box{
   position: absolute;
   top: 40%;
   left: 50%;
   transform: translate(-49%, -49%); /* in relation to the element itself */
   text-align: center;
+  }
 }
+
 
 .heading-primary{
   color: white;
@@ -87,96 +89,101 @@ body{
 
   backface-visibility: hidden;
   margin-bottom: 6rem;
+
+  /* heading-primary--main */
+  &--main{
+    display: block; // make <span>, which is an inline element, a block 
+    font-size: 6rem;
+    font-weight: 700; 
+    letter-spacing: 3.5rem;
+
+    animation-name: moveInLeft;
+    animation-duration: 2s;
+    animation-timing-function: ease-out;
+    /* animation-delay: 0s; */
+    /* animation-iteration-count: 3; */
+  }
+
+  /* heading-primary--sub */
+  &--sub{
+    display: block; // make <span>, which is an inline element, a block
+    font-size: 2rem;
+    font-weight: 400; 
+    letter-spacing: 1.75rem;
+
+    animation: moveInRight 2s ease-out;
+  }
 }
 
-/* make <span>, which is an inline element, a block */
-.heading-primary--main{
-  display: block; 
-  font-size: 6rem;
-  font-weight: 700; 
-  letter-spacing: 3.5rem;
+.btn{
 
-  animation-name: moveInLeft;
-  animation-duration: 2s;
-  animation-timing-function: ease-out;
-  /* animation-delay: 0s; */
-  /* animation-iteration-count: 3; */
-}
+    /* pseudo-class ':link' will be the initial state */
+  &:link, 
+  &:visited{
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 1.5rem 4rem;
+    display: inline-block; /* make <a> tag, which is inline, an inline-block */
+    border-radius: 10rem;
 
-/* make <span>, which is an inline element, a block */
-.heading-primary--sub{
-  display: block;
-  font-size: 2rem;
-  font-weight: 400; 
-  letter-spacing: 1.75rem;
+    transition: all .2s;  /* animation */
+    position: relative;
+    font-size: 1.6rem;
+  }
 
-  animation: moveInRight 2s ease-out;
-}
+  &:hover{
+    transform: translateY(-3px); /* to move up the button */ 
+    box-shadow: 0 1rem 2rem rgba($color-black, .2); /* subtle shadow: x, y, blur, color */
 
-/* pseudo-class ':link' will be the initial state */
-.btn:link, 
-.btn:visited{
-  text-transform: uppercase;
-  text-decoration: none;
-  padding: 1.5rem 4rem;
-  display: inline-block; /* make <a> tag, which is inline, an inline-block */
-  border-radius: 10rem;
+    /* make the pseudo button visible when we hover (make it bigger and fade it out) */
+    &::after{  // .btn:hover::after
+      transform: scaleX(1.4) scaleY(1.6); 
+      opacity: 0;
+    }
+  }
 
-  transition: all .2s;  /* animation */
-  position: relative;
-  font-size: 1.6rem;
-}
+  &:active{
+    transform: translateY(-1px); /* to move up the button */ 
+    box-shadow: 0 .5rem 1rem rgba($color-black, .2); /* less shadow: x, y, blur, color */
+  }
 
-.btn:hover{
-  transform: translateY(-3px); /* to move up the button */ 
-  box-shadow: 0 1rem 2rem rgba(0, 0, 0, .2); /* subtle shadow: x, y, blur, color */
-}
+  &--white{
+    background-color: $color-white;
+    color: $color-grey-dark;
 
-.btn:active{
-  transform: translateY(-1px); /* to move up the button */ 
-  box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .2); /* less shadow: x, y, blur, color */
-}
+    /* .btn--white::after   */ 
+    &::after{
+      background-color: $color-white;
+      color: $color-grey-dark;
+    }
+  }
 
-.btn--white{
-  background-color: $color-white;
-  color: $color-grey-dark;
-}
+  /* Add an element that looks exactly like the button that we already have.      
+  * The '::after' pseudo element is treated like a child of the 'btn', therefore
+  *  height:100% will be the same dimension that the 'btn' (its parent) 
+  * This is the initial state                 
+  */
+  &::after{
+    content: '';
+    display: inline-block; 
+    border-radius: 10rem;
+    height: 100%;
+    width: 100%;
 
-/* Add an element that looks exactly like the button that we already have.      
- * The '::after' pseudo element is treated like a child of the 'btn', therefore
- *  height:100% will be the same dimension that the 'btn' (its parent) 
- * This is the initial state                 
- */
-.btn::after{
-  content: '';
-  display: inline-block; 
-  border-radius: 10rem;
-  height: 100%;
-  width: 100%;
+    /* to put it behind our actual button */
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1; 
 
-  /* to put it behind our actual button */
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: -1; 
+    transition: all .4s;  /* animation */
+  }
 
-  transition: all .4s;  /* animation */
-}
 
-.btn--white::after{
-  background-color: $color-white;
-  color: $color-grey-dark;
-}
-
-/* make the pseudo button visible when we hover (make it bigger and fade it out) */
-.btn:hover::after{ 
-  transform: scaleX(1.4) scaleY(1.6); 
-  opacity: 0;
-}
-
-.btn--animated{
-  animation: moveInFromBottom .5s ease-out .75s;
-  animation-fill-mode: backwards;
+  &--animated{
+    animation: moveInFromBottom .5s ease-out .75s;
+    animation-fill-mode: backwards;
+  }
 }
 
 
