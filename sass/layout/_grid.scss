@@ -1,6 +1,5 @@
 .row{
   max-width: $grid-width;
-  background-color: #eee;
   margin: 0 auto; /* to center block elements inside of another block element */
   
   /* select every row except the last one (the last child) */
@@ -12,7 +11,6 @@
 
   /* DRY - select all the elements in which the 'class' attribute starts with 'col-' */
   [class^="col-"]{
-    background-color: orangered;
     float: left; // float all these columns to the left
 
     &:not(:last-child){ // select every column except the last one (the last child)

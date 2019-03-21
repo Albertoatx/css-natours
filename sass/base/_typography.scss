@@ -38,3 +38,22 @@ body{
     animation: moveInRight 2s ease-out;
   }
 }
+
+.heading-secondary{
+  font-size: 3.5rem;
+  text-transform: uppercase;
+  font-weight: 700;       // quite bold
+  letter-spacing: 2px;    // so small we can use pixels
+  display: inline-block;  // to make the gradient go only up to the element width
+  background-image: linear-gradient(to right, $color-primary-light, $color-primary-dark);
+  -webkit-background-clip: text; //making that gradient effect happen behind the text.
+  background-clip: text;  //Also define the standard property for compatibility
+  color: transparent;     // Make text transparent to see the background image
+  transition: all .2s;
+
+  &:hover{
+    transform: skewY(-2deg) skewX(15deg) scale(1.1);
+    text-shadow: .5rem 1rem 2rem rgba($color-black, .2);
+  }
+
+}
