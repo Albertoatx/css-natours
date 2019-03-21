@@ -1,0 +1,24 @@
+/* UNIVERSAL SELECTOR for RESET */
+/* Make a simple reset of browser defaults by using the universal selector */
+/* 'border-box': include the padding and border in an element's total width and height */
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  /* box-sizing: border-box; */ 
+  box-sizing: inherit; /* box-sizing by default is not inherited, so we force it */
+}
+
+/* Set our root font size (1rem will be this root font size)                        
+/* DON'T define it in pixels! That will override the browser font size setting
+ * that the user can manually change in the settings (for example for bad sight)  
+ * By default the browser font size is 16px, if we want 10px (10px / 16px = 0.625)
+ */
+html{
+  font-size: 62.5%;
+}
+
+body{
+  box-sizing: border-box;
+}

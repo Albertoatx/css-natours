@@ -1,0 +1,70 @@
+.btn{
+
+  /* pseudo-class ':link' will be the initial state */
+  &:link, 
+  &:visited{
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 1.5rem 4rem;
+    display: inline-block; /* make <a> tag, which is inline, an inline-block */
+    border-radius: 10rem;
+
+    transition: all .2s;  /* animation */
+    position: relative;
+    font-size: 1.6rem;
+  }
+
+  &:hover{
+    transform: translateY(-3px); /* to move up the button */ 
+    box-shadow: 0 1rem 2rem rgba($color-black, .2); /* subtle shadow: x, y, blur, color */
+
+    /* make the pseudo button visible when we hover (make it bigger and fade it out) */
+    &::after{  // .btn:hover::after
+      transform: scaleX(1.4) scaleY(1.6); 
+      opacity: 0;
+    }
+  }
+
+  &:active{
+    transform: translateY(-1px); /* to move up the button */ 
+    box-shadow: 0 .5rem 1rem rgba($color-black, .2); /* less shadow: x, y, blur, color */
+  }
+
+  &--white{
+    background-color: $color-white;
+    color: $color-grey-dark;
+
+    /* .btn--white::after   */ 
+    &::after{
+      background-color: $color-white;
+      color: $color-grey-dark;
+    }
+  }
+
+  /* Add an element that looks exactly like the button that we already have.      
+  * The '::after' pseudo element is treated like a child of the 'btn', therefore
+  *  height:100% will be the same dimension that the 'btn' (its parent) 
+  * This is the initial state                 
+  */
+  &::after{
+    content: '';
+    display: inline-block; 
+    border-radius: 10rem;
+    height: 100%;
+    width: 100%;
+
+    /* to put it behind our actual button */
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1; 
+
+    transition: all .4s;  /* animation */
+  }
+
+
+  &--animated{
+    animation: moveInFromBottom .5s ease-out .75s;
+    animation-fill-mode: backwards;
+  }
+}

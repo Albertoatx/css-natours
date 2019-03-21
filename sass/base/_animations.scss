@@ -1,0 +1,63 @@
+
+/* ANIMATION DEFINITION ********************************************************/
+/* For the browser performance is always best to only animate 2 properties: 
+   - opacity (0 is invisible)
+   - transform
+
+   0%:    at the beginning of our animation
+   100%:  at the end of our animation
+
+   For an animation of an HTML element to work we have to specify at least 
+   these 2 properties in that element: 
+   - animation-name
+   - animation-duration
+
+********************************************************************************/
+@keyframes moveInLeft{
+
+  0%{
+    opacity: 0;  
+    transform: translateX(-10rem);
+  }
+
+  80%{
+    transform: translateX(1rem);
+  }
+
+  100%{
+    opacity: 1;
+    transform: translateX(0); 
+  }
+}
+
+
+@keyframes moveInRight{
+
+  0%{
+    opacity: 0;  
+    transform: translateX(10rem);
+  }
+
+  80%{
+    transform: translateX(-1rem);
+  }
+
+  100%{
+    opacity: 1;
+    transform: translateX(0); 
+  }
+}
+
+
+@keyframes moveInFromBottom{
+
+  0%{
+    opacity: 0;  
+    transform: translateY(9rem);
+  }
+
+  100%{
+    opacity: 1;
+    transform: translateY(0); 
+  }
+}
