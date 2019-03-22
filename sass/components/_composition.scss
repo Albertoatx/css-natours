@@ -1,0 +1,41 @@
+.composition{
+
+  position: relative;
+
+  &__photo{
+    width: 55%;  // ALWAYS define the width of images in percentages (55% of its parent)  
+    box-shadow: 0 1rem 4rem rgba($color-black, 0.4);
+    border-radius: 3px;
+    position: absolute;
+    z-index: 10;
+    transition: all .2s;
+    outline-offset: 1rem;
+
+    &--pic1{
+      left: 0;
+      top: -2rem; /* move it upwards */
+    }
+
+    &--pic2{
+      right: 0;
+      top:  2rem; /* move it downwards */
+    }
+
+    &--pic3{
+      left: 20%;
+      top: 10rem; /* move it downwards */
+    }
+
+    &:hover{
+      transform: scale(1.15) translateY(-.5rem);
+      box-shadow: 0 2.5rem 4rem rgba($color-black, .6); // bigger shadow and a bit darker
+      z-index: 20;  // overlap all of the other images setting a bigger z-index
+      outline: 1rem solid $color-primary;
+    }
+  }
+
+  /* when we hover the composition, then select the composition photos which are not hovered */
+  &:hover &__photo:not(:hover) { // same as 'composition:hover composition__photo:not(:hover)'
+    transform: scale(.90);
+  }
+}
