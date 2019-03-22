@@ -1,5 +1,43 @@
+// SECTION-ABOUT
 .section-about{
   background-color: $color-grey-light-1;
   padding: 25rem 0;
   margin-top: -20vh; 
+}
+
+// SECTION-FEATURES
+.section-features {
+  padding: 20rem 0;
+  position: relative;
+
+  margin-top: -15rem; // move up the entire section to cover the white gap between sections 
+
+  transform: skewY(-6deg);
+
+  // Skew the cards in the opposite direction (to put them back into original position)!
+  // select all direct childen of the 'section-features' (in the html will be the 'rows')
+  & > * { 
+    transform: skewY(6deg);
+  }
+
+  // Unskew the background image!
+  // create a pseudo-element and add the background image to that instead. 
+  &::after {
+    content: '';
+
+    position: absolute; // add 'position: relative' to the section-features
+      top: 0;
+      right: 0;
+      left: 0;
+      bottom: 0;
+  
+    background-image: linear-gradient(
+      to right bottom,
+      rgba($color-primary-light, 0.801),
+      rgba($color-primary-dark, 0.801)),
+    url('../../img/nat-4.jpg');
+    background-size: cover;
+  
+    z-index: -1; // pull behind feature boxes
+  }
 }
