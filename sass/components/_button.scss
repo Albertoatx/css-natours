@@ -41,6 +41,16 @@
     }
   }
 
+  &--green{
+    background-color: $color-primary;
+    color: $color-white;
+
+    &::after{
+      background-color: $color-primary;
+      color: $color-white;
+    }
+  }
+
   /* Add an element that looks exactly like the button that we already have.      
   * The '::after' pseudo element is treated like a child of the 'btn', therefore
   *  height:100% will be the same dimension that the 'btn' (its parent) 
