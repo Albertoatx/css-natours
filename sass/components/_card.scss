@@ -1,18 +1,20 @@
 .card {
+
+  // FUNCTIONALITY
   // Define perspective on the parent element of the one where the rotation occurs
   perspective: 1500rem;
   position: relative;
-  height: 50rem;
+  height: 52rem;
 
   &__side {
-    height: 50rem;
-    font-size: 2rem;
-    color: white;
+    height: 100%;      // relative to its parent (currently 52rem)
     transition: all .8s ease;
+    //-webkit-backface-visibility: hidden;
     backface-visibility: hidden; // hide the back part of an element
-    border-radius: 3px;
+    border-radius: 2rem;
+    overflow: hidden;  // avoid the card image overlapping its parent element
     box-shadow: 0 1.5rem 4rem rgba($color-black, .15);
-
+    
     position: absolute; // Put each card side on top of each other 
       top: 0;
       left: 0;
@@ -38,4 +40,66 @@
   &:hover &__side--back {
     transform: rotateY(0);      // put the back side to the front
   }
+
+  // FRONT SIDE STYLING
+  &__picture {
+    height: 23rem;
+    background-size: cover;
+    background-blend-mode: soft-light; // color,
+    -webkit-clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+    clip-path: polygon(0 0, 100% 0, 100% 80%, 0 100%);
+
+    &--1 {
+      background-image: 
+        linear-gradient(to right bottom, $color-secondary-light, $color-secondary-dark),
+        url(../img/nat-5.jpg);
+    }
+  }
+
+  &__heading {
+    font-size: 2.8rem;
+    font-weight: 300;
+    text-transform: uppercase;
+    text-align: right;
+    color: $color-white;
+    position: absolute;
+      top: 12rem;
+      right: 2rem;
+      width: 75%; 
+  }
+
+  // A separate selector cause it is a new element in BEM (it's not a modifier of heading)
+  &__heading-span {
+    padding: 1rem 1.5rem; // the padding breaks the text into 2 lines (space not enough in 1 line)
+    -webkit-box-decoration-break: clone;
+    box-decoration-break: clone; // text inside the <span> as if they were 2 different elements
+
+    &--1{
+      background-image: linear-gradient(to right bottom, 
+        rgba($color-secondary-light, .85), 
+        rgba($color-secondary-dark, .85)),
+    }
+  }
+
+  &__details {
+    padding: 3rem;
+  
+    ul {
+      list-style: none;
+      width: 80%;
+      margin: 0 auto; // simplest way to center a block element inside a block element
+
+      li {
+        text-align: center;
+        font-size: 1.5rem;
+        padding: 1rem;
+
+        // a border line for all elements in the list except last one
+        &:not(:last-child){
+          border-bottom: 1px solid $color-grey-light-2;
+        }
+      }
+    }
+  }
+
 }
