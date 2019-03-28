@@ -1,0 +1,36 @@
+.story {
+  width: 75%;
+  margin: 0 auto;
+  box-shadow: 0 3rem 6rem rgba($color-black, .1);
+  background-color: $color-white;
+  border-radius: 3px;
+  padding: 6rem;
+  padding-left: 9rem; // padding + transform
+  font-size: $default-font-size;
+  transform: skewX(-12deg);
+
+
+  &__shape {
+    // 'shape-outside' property needs properties float, width, height
+    -webkit-shape-outside: circle(50% at 50% 50%);
+    shape-outside: circle(50% at 50% 50%);
+    float: left;
+    width: 15rem;
+    height: 15rem;
+
+    // create the circle
+    -webkit-clip-path: circle(50% at 50% 50%);
+    clip-path: circle(50% at 50% 50%);
+
+    // add space around an element that is floated + skew on the opposite direction
+    transform: translateX(-3rem) skewX(12deg);
+  }
+
+  &__img {
+    height: 100%; // For responsive web design, images always need width or height.
+  }
+
+  &__text {
+    transform: skewX(12deg); // skew on the opposite direction
+  }
+}
