@@ -9,6 +9,7 @@
   font-size: $default-font-size;
   transform: skewX(-12deg);
 
+  @include clearfix;
 
   &__shape {
     // 'shape-outside' property needs properties float, width, height
@@ -24,13 +25,47 @@
 
     // add space around an element that is floated + skew on the opposite direction
     transform: translateX(-3rem) skewX(12deg);
+    position: relative;
   }
 
   &__img {
     height: 100%; // For responsive web design, images always need width or height.
+    transform: translateX(-4rem) scale(1.4);
+    //backface-visibility: hidden;
+    filter: brightness(100%) blur(0); // initial value: avoids shaky effect on Chrome
+    transition: all .5s;
   }
 
   &__text {
     transform: skewX(12deg); // skew on the opposite direction
   }
+
+  &__caption {
+    // center the caption on top of the image (position absolute relative to its __shape container)
+    position: absolute; 
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, 0%); /* in relation to the width and height of element itself */
+      text-align: center;
+    color: $color-white;
+    text-transform: uppercase;
+    font-size: 1.7rem;
+    opacity: 0; // hide it before we hover it.
+    //backface-visibility: hidden;
+    transition: all .5s;
+  }
+
+  // when the story element is hovered, we want to change the caption
+  &:hover &__caption {
+    opacity: 1;
+    transform: translate(-50%, -50%);  // center it also on the vertical
+  }
+
+  // when the story element is hovered, we want to change the image
+  &:hover &__img {
+    opacity: 1;
+    transform: translateX(-4rem) scale(1);
+    filter: brightness(70%) blur(3px);
+  }
+
 }
