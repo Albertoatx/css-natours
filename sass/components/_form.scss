@@ -1,0 +1,71 @@
+.form {
+
+  // style every 'form__group' except the last child
+  &__group:not(:last-child) {
+    margin-bottom: 2rem;
+  }
+
+  &__input {
+    font-family: inherit; // by default browsers don't give <input> the font-family we have defined
+    color: inherit; 
+    font-size: 1.5rem;
+    padding: 1.5rem 2rem; // in form elements give more padding to sides
+    border-radius: 2px;
+    background-color: rgba($color-white, .8);
+    border: none;
+    border-bottom: 3px solid transparent; // invisible in the normal state
+    display: block; // this way it will have its own line (the label will be in another line)
+    width: 90%;    // of its parent element (book__form)
+
+    &:focus {
+      outline: none; // remove the blue border given by the browser
+  
+      /* make the form elements that are focused visible */
+      border-bottom: 3px solid $color-primary;
+      box-shadow: 0 1rem 2rem rgba($color-black, .1); 
+    }
+
+    //&:invalid,
+    &:focus:invalid  {
+      border-bottom: 3px solid $color-secondary-dark;
+    }
+
+    &::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+      color: $color-grey-dark-2;
+    }
+
+    /* Change Autocomplete styles in Chrome */
+    &:-webkit-autofill,
+    &:-webkit-autofill:hover,
+    &:-webkit-autofill:focus {
+      -webkit-text-fill-color: $color-grey-dark-2;
+      box-shadow: 0 0 0px 1000px rgba($color-white, .8) inset;
+      transition: background-color 5000s ease-in-out 0s;
+    }
+
+    // Remove the outline over input elements in Firefox
+    &:required {
+      box-shadow: none;
+    }
+  }
+
+
+  &__label {
+    font-size: 1.3rem;
+    font-weight: 700; // bold
+    margin-left: 2rem; // position on X axis in the same position of the text on top
+    margin-top: .7rem;
+    display: block;    // to be able to use the margin or padding on the sides   
+    transition: all .3s; // to animate the opacity property
+    transform: translateY(-9rem); // display the label above the input box instead of below
+  }
+
+  // Make the label invisible when the placeholder is shown (nothing written in the inputs)
+  //&__input:placeholder-shown &__label //NOT going to work because the 'label' is NOT a child of 'input'
+  &__input:placeholder-shown + &__label { // Use Adjacent sibling selector (+)
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-4rem); // initially place the label near the input
+  }
+
+}

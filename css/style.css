@@ -384,6 +384,52 @@ body {
     background-clip: text;
     color: transparent; }
 
+.form__group:not(:last-child) {
+  margin-bottom: 2rem; }
+
+.form__input {
+  font-family: inherit;
+  color: inherit;
+  font-size: 1.5rem;
+  padding: 1.5rem 2rem;
+  border-radius: 2px;
+  background-color: rgba(255, 255, 255, 0.8);
+  border: none;
+  border-bottom: 3px solid transparent;
+  display: block;
+  width: 90%;
+  /* Change Autocomplete styles in Chrome */ }
+  .form__input:focus {
+    outline: none;
+    /* make the form elements that are focused visible */
+    border-bottom: 3px solid #55c57a;
+    box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.1); }
+  .form__input:focus:invalid {
+    border-bottom: 3px solid #ff7730; }
+  .form__input::-webkit-input-placeholder {
+    /* Chrome/Opera/Safari */
+    color: #999; }
+  .form__input:-webkit-autofill, .form__input:-webkit-autofill:hover, .form__input:-webkit-autofill:focus {
+    -webkit-text-fill-color: #999;
+    box-shadow: 0 0 0px 1000px rgba(255, 255, 255, 0.8) inset;
+    transition: background-color 5000s ease-in-out 0s; }
+  .form__input:required {
+    box-shadow: none; }
+
+.form__label {
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin-left: 2rem;
+  margin-top: .7rem;
+  display: block;
+  transition: all .3s;
+  transform: translateY(-9rem); }
+
+.form__input:placeholder-shown + .form__label {
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-4rem); }
+
 .story {
   width: 75%;
   margin: 0 auto;
