@@ -1,6 +1,7 @@
 .btn{
 
   /* pseudo-class ':link' will be the initial state */
+  &,
   &:link, 
   &:visited{
     text-transform: uppercase;
@@ -12,6 +13,10 @@
     transition: all .2s;  /* animation */
     position: relative;
     font-size: $default-font-size;
+
+    // Changes for the <button> element
+    border: none;
+    cursor: pointer;
   }
 
   &:hover{
@@ -25,7 +30,10 @@
     }
   }
 
-  &:active{
+  &:active,
+  &:focus 
+  {
+    outline: none;
     transform: translateY(-1px); /* to move up the button */ 
     box-shadow: 0 .5rem 1rem rgba($color-black, .2); /* less shadow: x, y, blur, color */
   }

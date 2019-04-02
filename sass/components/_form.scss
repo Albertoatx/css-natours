@@ -16,6 +16,7 @@
     border-bottom: 3px solid transparent; // invisible in the normal state
     display: block; // this way it will have its own line (the label will be in another line)
     width: 90%;    // of its parent element (book__form)
+    transition: all .3s;
 
     &:focus {
       outline: none; // remove the blue border given by the browser
@@ -66,6 +67,63 @@
     opacity: 0;
     visibility: hidden;
     transform: translateY(-4rem); // initially place the label near the input
+  }
+
+  // RADIO BUTTONS
+  &__radio-group {
+    width: 45%;
+    display: inline-block; // display radio buttons side by side
+  }
+
+  &__radio-input {
+    //display: none;
+    opacity: 0; // better this to get to the radio buttons using TAB on keyboard
+  }
+
+  &__radio-label {
+    font-size: $default-font-size;
+    cursor: pointer;
+    position: relative;
+    padding-left: 4rem;
+  }
+
+  // our custom button
+  &__radio-button {
+    display: inline-block; // to be able to apply some of the next properties
+    height: 3rem; // a circle, so we want same height and width
+    width: 3rem; 
+    border: 5px solid $color-primary;
+    border-radius: 50%; // make the button completely round
+    position: absolute; // to place it exactly where we want (relative to a parent)
+      left: 0;
+      top: -0.5rem;
+ 
+    // create the inner element (the dot)
+    &::after {
+      content: '';
+      display: block;  // i think also works with inline-block
+      height: 1.2rem;
+      width: 1.2rem;
+      border-radius: 50%;
+      background-color: $color-primary;
+      // position the dot exactly in the center of our radio-button
+      position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      opacity: 0; // initially hide the dot
+      transition: opacity .2s;
+    }
+  }
+
+  // When radio-input checked, select child (radio-button) of its sibling element (radio-label)
+  &__radio-input:checked ~ &__radio-label &__radio-button::after {
+    opacity: 1; // show the dot
+  }
+
+  // Do this to get to the radio buttons using TAB on keyboard
+  &__radio-input:focus ~ &__radio-label &__radio-button::after {
+     opacity: 1;
   }
 
 }

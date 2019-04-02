@@ -20,12 +20,27 @@
       left: 0;
       width: 100%; // relative to its parent
 
+
+    // FRONT
     &--front {
       background-color: $color-white;
+
+      // Avoid text from back side of the card (price/button) mixing with the front when TAB
+      // make front card's z-index > than back of card. Then switch those values on hover.
+      z-index: 2;
+      &:hover {
+        z-index: 1;
+      }
     }
 
+    // BACK
     &--back {
       transform: rotateY(180deg); // initially the back side is at 180 degrees
+
+      z-index: 1;
+      &:hover {
+        z-index: 2;
+      }
 
       &-1{
         background-image: linear-gradient(to right bottom, $color-secondary-light, $color-secondary-dark);
