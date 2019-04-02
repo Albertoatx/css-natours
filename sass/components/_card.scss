@@ -11,7 +11,7 @@
     transition: all .8s ease;
     //-webkit-backface-visibility: hidden;
     backface-visibility: hidden; // hide the back part of an element
-    border-radius: 1rem;
+    border-radius: $border-radius-medium;
     overflow: hidden;  // avoid the card image overlapping its parent element
     box-shadow: 0 1.5rem 4rem rgba($color-black, .15);
 

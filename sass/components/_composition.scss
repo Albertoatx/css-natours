@@ -5,7 +5,7 @@
   &__photo{
     width: 55%;  // ALWAYS define the width of images in percentages (55% of its parent)  
     box-shadow: 0 1rem 4rem rgba($color-black, 0.4);
-    border-radius: 3px;
+    border-radius: $border-radius-small;
     position: absolute;
     z-index: 10;
     transition: all .2s;
