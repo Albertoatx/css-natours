@@ -1,0 +1,93 @@
+.navigation {
+
+  &__checkbox {
+    //display: none;
+  }
+
+  &__button {     // WHITE CIRCLE which must cover the background (GREEN circle)
+    height: 7rem; // bigger to cover the background GREEN circle
+    width: 7rem;  // same height and width to be a circle
+    border-radius: 50%;
+    background-color: $color-white;
+
+    position: fixed;
+      top: 6rem;
+      right: 6rem;
+      z-index: 2000; // high value to avoid being hidden behind other elements + cover background circle
+  }
+
+  
+  &__background { // GREEN CIRCLE
+    height: 6rem;
+    width: 6rem;  // same height and width to be a circle
+    border-radius: 50%;
+    background-image: radial-gradient($color-primary-light, $color-primary-dark);
+
+    position: fixed;
+      top: 6.5rem;
+      right: 6.5rem;
+      z-index: 1000; // high value to avoid being hidden behind other elements
+
+    transform: scale(60); // WARNING: only for development purposes
+  }
+
+
+  &__nav {
+    height: 100vh;  // occupy the entire viewport
+    width: 100%;    // not needed (block element automatically has 100% width)
+
+    position: fixed;
+      top: 0;
+      right: 0;
+      z-index: 1500; // has to be in the middle of WHITE and GREEN circle
+  }
+
+  &__list {
+    // center the list 
+    @include center-horizontal-vertical;
+
+    list-style: none;
+    counter-reset: section;// CSS counter named 'section' to enumerate the list (initial value is 0) 
+  }
+
+  &__item {
+    margin: 1rem;
+  }
+
+  &__link {
+
+    &::before { 
+      counter-increment: section; // Increments CSS counter named 'section'
+      content: "0" counters(section, ".") " ";
+      margin-right: 1rem;
+    }
+
+    &:link,
+    &:visited {
+      display: inline-block; // inline elements are not transformable and not padding top-bottom
+      font-size: 3rem;
+      font-weight: 300;
+      color: $color-white;
+      text-decoration: none;
+      text-transform: uppercase;
+      padding: 1rem 2rem;
+      transition: all .4s;
+  
+      // solid color gradient
+      background-image: linear-gradient(120deg, transparent 50%, $color-white 50%);
+      background-size: 230%; // to hide the right side of the solid color gradient (the white color) 
+    }
+
+    &:focus {
+      outline: none;   // remove the blue border on our links when you use the tab key
+      border-bottom: 2px solid $color-white; // make element focused visible when you use the tab key */
+    }
+
+    &:hover,
+    &:active {
+      background-position: 100%;  // shift the background to the left side
+      color: $color-primary;
+      transform: translateX(1rem); 
+    }
+  }
+}
