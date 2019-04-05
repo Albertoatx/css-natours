@@ -1,9 +1,5 @@
 .navigation {
 
-  &__checkbox {
-    //display: none;
-  }
-
   &__button {     // WHITE CIRCLE which must cover the background (GREEN circle)
     height: 7rem; // bigger to cover the background GREEN circle
     width: 7rem;  // same height and width to be a circle
@@ -28,18 +24,23 @@
       right: 6.5rem;
       z-index: 1000; // high value to avoid being hidden behind other elements
 
-    transform: scale(60); // WARNING: only for development purposes
+    // transform: scale(60); // WARNING: only for development purposes
+    //-webkit-transition: transform .8s cubic-bezier(0.86, 0, 0.07, 1);
+    transition: transform .8s cubic-bezier(0.86, 0, 0.07, 1);
   }
 
 
   &__nav {
     height: 100vh;  // occupy the entire viewport
-    width: 100%;    // not needed (block element automatically has 100% width)
-
+    //width: 100%;    // not needed (block element automatically has 100% width)
+    width: 0; opacity: 0;  // hide navigation
+    
     position: fixed;
       top: 0;
-      right: 0;
+      left: -100%;   // push the nav element off-screen entirely 
       z-index: 1500; // has to be in the middle of WHITE and GREEN circle
+
+    transition: all .8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
   }
 
   &__list {
@@ -48,6 +49,8 @@
 
     list-style: none;
     counter-reset: section;// CSS counter named 'section' to enumerate the list (initial value is 0) 
+
+    //width: 100% // WHY??? (min6 class50)
   }
 
   &__item {
@@ -89,5 +92,19 @@
       color: $color-primary;
       transform: translateX(1rem); 
     }
+  }
+
+  &__checkbox {
+    display: none;
+  }
+
+  // Use the general sibling selector (~) to select the right element
+  &__checkbox:checked ~ &__background {
+    transform: scale(80);
+  }
+
+  &__checkbox:checked ~ &__nav {
+    width: 100%; opacity: 1;  // make visible the navigation
+    left: 0;                  // push the nav element on-screen 
   }
 }
