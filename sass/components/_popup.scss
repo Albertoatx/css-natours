@@ -1,0 +1,76 @@
+.popup {
+
+  background-color: rgba($color-black, .8);
+  height: 100vh;           // occupy the full screen
+  width: 100%;
+  position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 5000; // a huge value to be even on top of the navigation button
+
+  &__content {
+    //height: 50rem;       // height only for testing purposes
+    width: 75%;            // 75% of the parent (popup) 
+    background-color: rgba($color-white, 1);
+    box-shadow: 0 2rem 4rem rgba($color-black, .2);
+    border-radius: 3px;
+
+    @include center-horizontal-vertical;
+    text-align: left;      // not needed: 'left' it is the default value
+
+    overflow: hidden;      // avoid images overflow the border-radius
+    display: table;        // fake this is a table
+  }
+
+  &__left {
+    //width: 33.333333%;   // 33.3% of the parent (popup__content) 
+    width: (100% / 3);     // let SASS do the calculation    
+    display: table-cell;   // left cell of table
+    vertical-align: middle;
+
+    //position: relative;
+  }
+
+  &__right {
+    //width: 66.666667;    // 33.3% + 66.6 = 100%
+    width: (100% / 2);
+    display: table-cell;   // right cell of table
+    vertical-align: middle;
+    padding: 3rem 5rem;
+  }
+
+  &__img {
+    display: block;
+    width: 100%;           // 100% of the parent (popup__left)
+
+    // TESTED comment 'Remove white space under img & make responsive' - DOESN'T WORK!
+    // position: absolute;
+    // left: 50%;
+    // display: inline-block;
+    // height: 50%;
+    // transform: translateX(-50%);
+
+    // &--1 {
+    //   bottom: 50%;
+    // }
+
+    // &--2 {
+    //   top: 50%;
+    // }
+  }
+
+  &__text {
+    font-size: 1.4rem;
+    margin-bottom: 4rem;
+
+    // separate text in columns
+    column-count: 2;
+    column-gap: 4rem;
+    column-rule: 1px solid $color-grey-light-2;
+
+    // CSS Hyphenation
+    -ms-hyphens: auto;    
+    -webkit-hyphens: auto; // saphary & chrome
+    hyphens: auto;
+  }
+}

@@ -49,6 +49,7 @@
   &__list {
     // center the list 
     @include center-horizontal-vertical;
+    text-align: center;
 
     list-style: none;
     counter-reset: section;// CSS counter named 'section' to enumerate the list (initial value is 0) 
