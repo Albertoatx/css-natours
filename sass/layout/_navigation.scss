@@ -10,6 +10,9 @@
       top: 6rem;
       right: 6rem;
       z-index: 2000; // high value to avoid being hidden behind other elements + cover background circle
+
+    text-align: center; // center its content horizontally
+    cursor: pointer;
   }
 
   
@@ -98,6 +101,7 @@
     display: none;
   }
 
+  //FUNCTIONALITY
   // Use the general sibling selector (~) to select the right element
   &__checkbox:checked ~ &__background {
     transform: scale(80);
@@ -107,4 +111,63 @@
     width: 100%; opacity: 1;  // make visible the navigation
     left: 0;                  // push the nav element on-screen 
   }
+
+  //ICON
+  &__icon {
+    position: relative;
+    margin-top: 3.5rem;   // to center it vertically
+
+    &,
+    &::before,
+    &::after {
+      // to be able to apply width and height (<span> is inline)
+      display: inline-block; 
+
+      // the 3 dark lines
+      width: 3rem;
+      height: 2px; // in px because we don't want this size to change
+      background-color: $color-grey-dark-3;
+    }
+
+    &::before,
+    &::after {
+      content: ''; // for ::before, ::after pseudo elements to appear on the page
+      position: absolute; // to place them where we want (left, top) relative to the icon
+      left: 0;
+      transition: all .2s;
+    }
+
+    &::before { 
+      top: -.8rem;  // move it up
+    } 
+
+    &::after { 
+      top: .8rem;  // move it down
+    } 
+  }
+
+  // HOVER on button -> increase spacing of the lines
+  &__button:hover &__icon::before {
+    top: -1rem; 
+  }
+
+  &__button:hover &__icon::after {
+    top: 1rem; 
+  }
+
+  // When we click the button (label linked to checkbox) select the icon 
+  &__checkbox:checked + &__button &__icon {
+    background-color: transparent; // make the line in the middle disappear
+  }
+
+  &__checkbox:checked + &__button &__icon::before {
+    top: 0;
+    transform: rotate(-135deg); //rotate the top line to form a cross
+  }
+
+  &__checkbox:checked + &__button &__icon::after {
+    top: 0;
+    transform: rotate(135deg); //rotate the down line to form a cross
+  }
+
 }

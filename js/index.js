@@ -1,6 +1,6 @@
 
 
-// Make the navigation functional: After clinking a navigation link the menu should close
+// Make the navigation functional: After clicking on a navigation link the menu should close
 var navlinks = document.querySelectorAll('.navigation__link');
 
 Array.from(navlinks).forEach(function (link) {
