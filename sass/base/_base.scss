@@ -16,7 +16,29 @@
  * By default the browser font size is 16px, if we want 10px (10px / 16px = 0.625)
  */
 html{
-  font-size: 62.5%;
+  font-size: 62.5%;    // Normal style: 1rem = 10px, so 10/16px (62.5)
+
+  // NOTE: place 'max-width' media queries from larger to shorter breakpoints
+  @include respond(tab-land) { // is width <= 1200 px?
+    font-size: 56.26%;         // I want 1rem = 9px, so 9px/16px (56.25%)
+  }
+
+  @include respond(tab-port) { // is width <= 900 px?
+    font-size: 50%;            // I want 1rem = 8px, so 8px/16px (50%)
+  }
+
+  @include respond(phone) {    // is width <= 600 px?
+    font-size: 43.75%;
+  }
+
+  // NOTE: place 'min-width' media queries from shorter to larger breakpoints
+  @include respond(big-desktop) { // is width > 1800 px?
+    font-size: 75%;            // I want 1rem = 12px, so 12px/16px (75%)
+  }
+
+  @include respond(huge-desktop) { // is width > 2600 px?
+    font-size: 87.5%;            // I want 1rem = 14px, so 14px/16px (87.5%)
+  }
 }
 
 body{

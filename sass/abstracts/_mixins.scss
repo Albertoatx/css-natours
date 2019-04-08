@@ -12,3 +12,45 @@
     left: 50%;
     transform: translate(-50%, -50%);
 }
+
+// MEDIA QUERY MANAGER (this app was built with a Desktop-First approach)
+// ----------------------------------------------------------------------------
+// Breakpoints:
+//  0   - 600px       Phone
+//  600 - 900px       Tablet portrait
+//  900 - 1200px      Tablet landscape
+//  1200 - 1800px     It is where our NORMAL styles apply
+//  1800 - 2600px     Big desktop
+//  +2600px           Huge desktop
+// 
+// 1rem-1em in a media query is always equal to font-size from the browser (16px)
+// ----------------------------------------------------------------------------
+
+@mixin respond($device) {
+
+  //  $device argument choices (1 mixing which covers all of these cases):
+  //  - phone
+  //  - tab-port
+  //  - tab-land
+  //  - big-desktop
+  //  - huge-desktop
+  
+  // MAX-WIDTH media queries! We want this to happen when width is SHORTER than ...
+  @if $device == phone {
+      @media only screen and (max-width: 37.5em) { @content };     //600px / 16px
+  }
+  @if $device == tab-port {
+      @media only screen and (max-width: 56.25em) { @content };    //900px / 16px
+  }
+  @if $device == tab-land {
+      @media only screen and (max-width: 75em) { @content };       //1200px / 16px
+  }
+
+  // MIN-WIDTH media queries! We want this to happen when width is LARGER than ...
+  @if $device == big-desktop {
+      @media only screen and (min-width: 112.5em) { @content };    //1800px / 16px
+  }
+  @if $device == huge-desktop {
+      @media only screen and (min-width: 162.5em) { @content };    //2600px / 16px
+  }
+}
