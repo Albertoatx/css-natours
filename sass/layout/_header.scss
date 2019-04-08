@@ -13,6 +13,11 @@
 
   position: relative;
 
+  @include respond(phone) { // width <= 900 px
+    -webkit-clip-path: polygon(0 0, 100% 0, 100% 85vh, 0 100%);
+    clip-path: polygon(0 0, 100% 0, 100% 85vh, 0 100%); 
+  }
+
   /* top & left position is from 'logo-box' parent element (the .header) */
   &__logo-box{  // this is the same as 'header__logo-box'
     position: absolute;

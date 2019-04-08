@@ -1,10 +1,19 @@
 .row{
   max-width: $grid-width;
   margin: 0 auto; /* to center block elements inside of another block element */
+
+  @include respond(tab-port) { // width <= 900 px
+    max-width: 50rem; // for smaller screens DON'T fill 100% of the available space
+    padding: 0 3rem;
+  }
   
   /* select every row except the last one (the last child) */
   &:not(:last-child){
     margin-bottom: $gutter-vertical; 
+
+    @include respond(tab-port) { // width <= 900 px
+      margin-bottom: $gutter-vertical-small; 
+    }
   }
 
   @include clearfix;
@@ -15,6 +24,15 @@
 
     &:not(:last-child){ // select every column except the last one (the last child)
       margin-right: $gutter-horizontal; 
+
+      @include respond(tab-port) { // width <= 900 px
+        margin-right: 0; 
+        margin-bottom: $gutter-vertical-small;
+      }
+    }
+
+    @include respond(tab-port) { // width <= 900 px -> all columns are transformed into rows
+      width: 100% !important; 
     }
   }
 

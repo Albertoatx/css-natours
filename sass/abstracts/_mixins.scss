@@ -24,6 +24,12 @@
 //  +2600px           Huge desktop
 // 
 // 1rem-1em in a media query is always equal to font-size from the browser (16px)
+//
+// ORDER to write our media queries: 
+//   1 - Base + typography
+//   2 - General layout (head, footer, ...) + Grid
+//   3 - Specific Page layout
+//   4 - Components
 // ----------------------------------------------------------------------------
 
 @mixin respond($device) {

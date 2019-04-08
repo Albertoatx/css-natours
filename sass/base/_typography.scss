@@ -4,7 +4,6 @@ body{
   font-weight: 400;
   line-height: 1.7;
   color: $color-grey-dark;
-  padding: 3rem; 
 }
 
 .heading-primary{
@@ -26,6 +25,11 @@ body{
     animation-timing-function: ease-out;
     /* animation-delay: 0s; */
     /* animation-iteration-count: 3; */
+
+    @include respond(phone) {    // width <= 600 px
+      font-size: 5rem;
+      letter-spacing: 1rem;
+    }
   }
 
   /* heading-primary--sub */
@@ -36,6 +40,10 @@ body{
     letter-spacing: 1.75rem;
 
     animation: moveInRight 2s ease-out;
+
+    @include respond(phone) {    // width <= 600 px
+      letter-spacing: .5rem;
+    }
   }
 }
 
@@ -50,6 +58,14 @@ body{
   background-clip: text;  //Also define the standard property for compatibility
   color: transparent;     // Make text transparent to see the background image
   transition: all .2s;
+
+  @include respond(tab-port) { // width <= 900 px
+    font-size: 3rem;            
+  }
+
+  @include respond(phone) {    // width <= 600 px
+    font-size: 2.5rem;   
+  }
 
   &:hover{
     transform: skewY(-2deg) skewX(15deg) scale(1.1);

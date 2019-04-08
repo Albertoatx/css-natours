@@ -13,6 +13,16 @@
 
     text-align: center; // center its content horizontally
     cursor: pointer;
+
+    @include respond(tab-port) { 
+      top: 4rem;
+      right: 4rem; 
+    }
+
+    @include respond(phone) {
+      top: 3rem;
+      right: 3rem;
+    }
   }
 
   
@@ -30,6 +40,16 @@
     // transform: scale(60); // WARNING: only for development purposes
     //-webkit-transition: transform .8s cubic-bezier(0.86, 0, 0.07, 1);
     transition: transform .8s cubic-bezier(0.86, 0, 0.07, 1);
+
+    @include respond(tab-port) { 
+      top: 4.5rem;
+      right: 4.5rem; 
+    }
+
+    @include respond(phone) { 
+      top: 3.5rem;
+      right: 3.5rem; 
+    }
   }
 
 

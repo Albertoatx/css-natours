@@ -43,4 +43,9 @@ html{
 
 body{
   box-sizing: border-box;
+  padding: 3rem; 
+
+  @include respond(tab-port) { // is width <= 900 px?
+    padding: 0rem; 
+  }
 }
