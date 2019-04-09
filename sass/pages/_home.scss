@@ -3,6 +3,10 @@
   background-color: $color-grey-light-1;
   padding: 25rem 0;
   margin-top: -20vh; 
+
+  @include respond(tab-port) {  // is width < tab-port 
+    padding: 20rem 0;            
+  }
 }
 
 // SECTION-FEATURES
@@ -13,6 +17,11 @@
   margin-top: -15rem; // move up the entire section to cover the white gap between sections 
 
   transform: skewY(-6deg);
+
+  @include respond(tab-port) {  // is width < tab-port 
+    padding: 10rem 0;        
+    margin-top: -10rem;    
+  }
 
   // Skew the cards in the opposite direction (to put them back into original position)!
   // select all direct childen of the 'section-features' (in the html will be the 'rows')
@@ -47,6 +56,10 @@
   background-color: $color-grey-light-1;
   padding: 25rem 0 15rem 0;
   margin-top: -15rem; 
+
+  @include respond(tab-port) {  // is width < tab-port 
+    padding: 20rem 0 10rem 0;            
+  }
 }
 
 // SECTION-STORIES
@@ -54,6 +67,10 @@
   //background-color: $color-grey-light-1;
   padding: 15rem 0;
   position: relative;
+
+  @include respond(tab-port) {  // is width < tab-port 
+    padding: 10rem 0;            
+  }
 }
 
 // SECTION-BOOK
@@ -63,6 +80,10 @@
       to right bottom,
       rgba($color-primary-light, 1),
       rgba($color-primary-dark, 1));
+
+  @include respond(tab-port) {  // is width < tab-port 
+    padding: 10rem 0;            
+  }
 }
 
 .book {

@@ -11,19 +11,43 @@
     transition: all .2s;
     outline-offset: 1rem;
 
+    @include respond(tab-port) {  // is width < tab-port 
+      float: left;        // float photos side by side
+      position: relative; // give relative for the float to work (if not has absolute pos)
+      width: 33.333333%;
+      box-shadow: 0 1rem 3rem rgba($color-black, 0.2);
+    }
+
     &--pic1{
       left: 0;
       top: -2rem; /* move it upwards */
+
+      @include respond(tab-port) {  // is width < tab-port 
+        top: 0;   
+        transform: scale(1.2);     
+      }
     }
 
     &--pic2{
       right: 0;
       top:  2rem; /* move it downwards */
+
+      @include respond(tab-port) {  
+        top: -2rem;   
+        transform: scale(1.3);  
+        z-index: 50;  // this picture on top of the others      
+      }
     }
 
     &--pic3{
       left: 20%;
       top: 10rem; /* move it downwards */
+
+      @include respond(tab-port) {  
+        top: 1rem;  
+        left: 0;    
+        transform: scale(1.1);       
+      }
     }
 
     &:hover{
