@@ -26,6 +26,11 @@
     opacity: 0;
     transform: translate(-50%, -50%) scale(.25); // 2 transforms to avoid overwriting
     transition: all .5s .2s;// animate with delay of .2secs
+
+    // RESPONSIVE: for tab-land make the display block instead of table
+    @include respond(tab-land) {
+      display: block;
+    }
   }
 
   &__left {
@@ -35,6 +40,13 @@
     vertical-align: middle;
 
     //position: relative;
+
+    // RESPONSIVE: for tab-land I put the images above and the text below
+    @include respond(tab-land) {
+      width: 100%;         // make the container of the image to be 100% width
+      display: block;      // make display block instead of table-cell
+      padding-bottom: 4rem;
+    }
   }
 
   &__right {
@@ -43,26 +55,36 @@
     display: table-cell;   // right cell of table
     vertical-align: middle;
     padding: 3rem 5rem;
+
+    // RESPONSIVE: for tab-land
+    @include respond(tab-land) {
+      width: 100%;
+      display: block;
+      position: relative;  // for the closing X to appear
+    }
+
+    @include respond(phone) {
+      padding: 0 3rem 3rem 3rem;
+    }
   }
 
   &__img {
     display: block;
     width: 100%;           // 100% of the parent (popup__left)
 
-    // TESTED comment 'Remove white space under img & make responsive' - DOESN'T WORK!
-    // position: absolute;
-    // left: 50%;
-    // display: inline-block;
-    // height: 50%;
-    // transform: translateX(-50%);
+    // RESPONSIVE: inside that container each image is 50% width
+    @include respond(tab-land) {
+      width: 50%; 
+      height: 30rem;
+      float: left;         // float them to place them in same line
+      object-fit: cover;   // fill entire parent (popup__left) maintaining its aspect ratio
+      margin-bottom: 2rem;
+    }
 
-    // &--1 {
-    //   bottom: 50%;
-    // }
-
-    // &--2 {
-    //   top: 50%;
-    // }
+    // RESPONSIVE: for phone don't show pictures
+    @include respond(phone) {
+      display: none;
+    }
   }
 
   &__text {
@@ -78,6 +100,11 @@
     -ms-hyphens: auto;    
     -webkit-hyphens: auto; // saphary & chrome
     hyphens: auto;
+
+    // RESPONSIVE: Reduce the margin-bottom
+    @include respond(tab-land) {
+      margin-bottom: 2.5rem;
+    }
   }
 
 
@@ -107,6 +134,11 @@
         right: 2.5rem;
       //display: inline-block;
       //transition: all .2s;
+
+      // RESPONSIVE: Move up the X
+      @include respond(tab-land) {
+        top: -2.5rem;
+      }
     }
 
     &:hover {
