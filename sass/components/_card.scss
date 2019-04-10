@@ -176,4 +176,60 @@
     font-weight: 100; // Make the big text thinner
   }
 
+
+  // -------------------------------------------------------------------------------------
+  // For TOUCH DEVICES (width < tab-port) we will do a WHOLE rewrite of the card component
+  // -------------------------------------------------------------------------------------
+  @include respond(tab-port) {  
+      
+    // FUNCTIONALITY
+    height: auto;
+    //border-radius: $border-radius-small;
+    box-shadow: 0 1.5rem 4rem rgba($color-black, .15);
+    background-color: $color-white;
+
+    &__side {
+      height: auto;      
+      box-shadow: none;
+      border-radius: $border-radius-small;
+      position: relative; // On touch devices cards only 1 side 
+
+      // FRONT
+
+      // BACK
+      &--back {
+        transform: rotateY(0);// On touch devices back of the card NOT rotated
+        -webkit-clip-path: polygon(0 15%, 100% 0, 100% 100%, 0 100%);
+        clip-path: polygon(0 15%, 100% 0, 100% 100%, 0 100%);
+      }
+    }
+
+    &:hover &__side--front {
+      transform: rotateY(0); // front side should NOT rotate when we hover it
+    }
+
+    // FRONT SIDE STYLING (almost the same as before)
+    &__details {
+      padding: 1rem 3rem;
+    }
+
+    // BACK SIDE STYLING
+    &__cta {
+      position: relative;  // On touch devices cards only 1 side (use relative)
+        top: 0%;
+        left: 0%;
+        width: 100%;
+        transform: translate(0); 
+      padding: 7rem 4rem 4rem 4rem;
+    }
+
+    &__price-box {
+      margin-bottom: 3rem;
+    }
+
+    &__price-value {
+      font-size: 5rem;
+    }
+  }
+
 }

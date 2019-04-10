@@ -93,14 +93,41 @@
       rgba($color-white, .9) 50%, 
       transparent 50%), 
     url('../img/nat-10.jpg');
-  background-size: 100%; // equals 'cover' value 
+  background-size: 100%; // the image occupies the entire width (x direction)  
   border-radius: $border-radius-small;
   box-shadow: 0 1.5rem 4rem rgba($color-black, .2);
 
-  height: 50rem; // only for testing purposes (later we will want the content height)
+  //height: 50rem; // only for testing purposes (later we will want the content height)
+
+  @include respond(tab-land) {
+    // change the gradient from 50% to 65%
+    background-image: linear-gradient(
+      100deg, 
+      rgba($color-white, .9) 65%, 
+      transparent 65%), 
+    url('../img/nat-10.jpg');
+    background-size: cover; // the image occupies the entire height (y direction)  
+  }
+
+  @include respond(tab-port) {
+    // change the gradient from 50% to 65%
+    background-image: linear-gradient(
+      to right, 
+      rgba($color-white, .9) 0%,
+      rgba($color-white, .9) 100%), 
+    url('../img/nat-10.jpg');
+  }
 
   &__form {
     width: 50%;
     padding: 6rem;
+
+    @include respond(tab-land) {
+      width: 65%  // increase the width of form from 50% to 65%
+    }
+
+    @include respond(tab-port) {
+      width: 100% // increase the width of form from 65% to 100%
+    }
   }
 }

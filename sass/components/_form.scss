@@ -18,6 +18,10 @@
     width: 90%;    // of its parent element (book__form)
     transition: all .3s;
 
+    @include respond(tab-port) {
+      width: 100%;         // make each input field occupy full width of the form
+    }
+
     &:focus {
       outline: none; // remove the blue border given by the browser
   
@@ -73,6 +77,11 @@
   &__radio-group {
     width: 45%;
     display: inline-block; // display radio buttons side by side
+
+    @include respond(tab-port) {
+      width: 100%;         // make each radio button occupy full width
+      margin-bottom: 2rem;
+    }
   }
 
   &__radio-input {
