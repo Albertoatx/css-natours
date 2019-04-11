@@ -29,6 +29,26 @@
     transform: skewY(6deg);
   }
 
+  // Add margin ONLY to the 1st and last 'feature-box' in screens bigger than 'tab-port'
+  & div.col-1-of-4:first-child .feature-box {
+    margin-left:  1.5rem; 
+  }
+
+  & div.col-1-of-4:last-child .feature-box {
+    margin-right:  1.5rem; 
+  }
+
+  @include respond(tab-port) {  // is width < tab-port 
+    & div.col-1-of-4:first-child .feature-box {
+      margin-left:  0; 
+    } 
+    
+    & div.col-1-of-4:last-child .feature-box {
+      margin-right:  0rem; 
+    }
+  }
+
+
   // Unskew the background image!
   // create a pseudo-element and add the background image to that instead. 
   &::after {
@@ -48,6 +68,18 @@
     background-size: cover;
   
     z-index: -1; // pull behind feature boxes
+
+    // if 2x screen resolution and width >= 600px (above phone)
+    // OR if width >= 2000px
+    @media (min-resolution: 192dpi) and (min-width: 37.5em),
+          (min-width: 125em) {
+      background-image: linear-gradient(
+        to right bottom, 
+        rgba($color-primary-light, 0.801),
+        rgba($color-primary-dark, 0.801)
+      ), url('../img/nat-4-large.jpg');
+    }
+
   }
 }
 
@@ -99,6 +131,16 @@
 
   //height: 50rem; // only for testing purposes (later we will want the content height)
 
+  // if 2x screen resolution
+  @media (min-resolution: 192dpi) {
+    background-image: linear-gradient(
+      100deg, 
+      rgba($color-white, .9) 50%, 
+      transparent 50%), 
+    url('../img/nat-10-large.jpg');
+  }
+
+  // TABLET LANDSCAPE media queries
   @include respond(tab-land) {
     // change the gradient from 50% to 65%
     background-image: linear-gradient(
@@ -107,16 +149,37 @@
       transparent 65%), 
     url('../img/nat-10.jpg');
     background-size: cover; // the image occupies the entire height (y direction)  
+
+    // if 2x screen resolution
+    @media (min-resolution: 192dpi) {
+      background-image: linear-gradient(
+        100deg, 
+        rgba($color-white, .9) 65%, 
+        transparent 65%), 
+      url('../img/nat-10-large.jpg');
+    }
   }
 
+  // TABLET PORTRAIT (and mobile) media queries
   @include respond(tab-port) {
-    // change the gradient from 50% to 65%
+    // change the gradient to all white
     background-image: linear-gradient(
       to right, 
       rgba($color-white, .9) 0%,
       rgba($color-white, .9) 100%), 
-    url('../img/nat-10.jpg');
+    url('../img/nat-10-tiny.jpg');
+
+    // if 2x screen resolution
+    @media (min-resolution: 192dpi) {
+      background-image: linear-gradient(
+        to right, 
+        rgba($color-white, .9) 0%, 
+        rgba($color-white, .9) 100%, 
+        transparent 65%), 
+      url('../img/nat-10-small.jpg');
+    }
   }
+
 
   &__form {
     width: 50%;
