@@ -85,7 +85,7 @@
       
       // WARNING! Because above 900px there will be 3 columns -> NO need for big images
       //   Even with 1 column (bellow 900px) + 2x screens res -> images bellow 750px  
-      @media (min-resolution: 192dpi), (-webkit-min-device-pixel-ratio: 2) {
+      @media only screen and (min-resolution: 192dpi), only screen and (-webkit-min-device-pixel-ratio: 2) {
         background-image: 
           linear-gradient(to right bottom, 
             rgba($color-secondary-light,.6), 
@@ -103,7 +103,7 @@
     
       // WARNING! Because above 900px there will be 3 columns -> NO need for big images
       //   Even with 1 column (bellow 900px) + 2x screens res -> images bellow 750px  
-      @media (min-resolution: 192dpi), (-webkit-min-device-pixel-ratio: 2) {
+      @media only screen and (min-resolution: 192dpi), only screen and (-webkit-min-device-pixel-ratio: 2) {
         background-image: 
           linear-gradient(to right bottom, 
             rgba($color-primary-light,.6), 
@@ -121,7 +121,7 @@
     
       // WARNING! Because above 900px there will be 3 columns -> NO need for big images
       //   Even with 1 column (bellow 900px) + 2x screens res -> images bellow 750px  
-      @media (min-resolution: 192dpi), (-webkit-min-device-pixel-ratio: 2) {
+      @media only screen and (min-resolution: 192dpi), only screen and (-webkit-min-device-pixel-ratio: 2) {
         background-image: 
           linear-gradient(to right bottom, 
             rgba($color-tertiary-light,.6), 
@@ -145,7 +145,7 @@
         
         // WARNING! Because above 900px there will be 3 columns -> NO need for big images
         //   Even with 1 column (bellow 900px) + 2x screens res -> images bellow 750px  
-        @media (min-resolution: 192dpi), (-webkit-min-device-pixel-ratio: 2) {
+        @media only screen and (min-resolution: 192dpi), only screen and (-webkit-min-device-pixel-ratio: 2) {
           background-image: 
             linear-gradient(to right bottom, $color-secondary-light, $color-secondary-dark),
             url('../img/nat-5.jpg');
@@ -157,7 +157,7 @@
           linear-gradient(to right bottom, $color-primary-light, $color-primary-dark),
           url(../img/nat-6-small.jpg);
         
-        @media (min-resolution: 192dpi), (-webkit-min-device-pixel-ratio: 2) {
+        @media only screen and (min-resolution: 192dpi), only screen and (-webkit-min-device-pixel-ratio: 2) {
           background-image: 
             linear-gradient(to right bottom, $color-primary-light, $color-primary-dark),                 
             url('../img/nat-6.jpg');
@@ -169,7 +169,7 @@
           linear-gradient(to right bottom, $color-tertiary-light, $color-tertiary-dark),
           url(../img/nat-7-small.jpg);
 
-        @media (min-resolution: 192dpi), (-webkit-min-device-pixel-ratio: 2) {
+        @media only screen and (min-resolution: 192dpi), only screen and (-webkit-min-device-pixel-ratio: 2) {
           background-image: 
             linear-gradient(to right bottom, $color-tertiary-light, $color-tertiary-dark),                 
             url('../img/nat-7.jpg');
@@ -265,7 +265,9 @@
   // -------------------------------------------------------------------------------------
   // For TOUCH DEVICES (width < tab-port) we will do a WHOLE rewrite of the card component
   // -------------------------------------------------------------------------------------
-  @include respond(tab-port) {  
+  //@include respond(tab-port) {
+    @media only screen and (max-width: 56.25em), // tab-port or smaller
+           only screen and (hover: none) {       // OR other any touch device
       
     // FUNCTIONALITY
     height: auto;

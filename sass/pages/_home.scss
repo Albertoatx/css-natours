@@ -71,9 +71,9 @@
 
     // if 2x screen resolution and width >= 600px (above phone)
     // OR if width >= 2000px
-    @media (min-resolution: 192dpi) and (min-width: 37.5em),
-           (-webkit-min-device-pixel-ratio: 2) and (min-width: 37.5em),
-          (min-width: 125em) {
+    @media only screen and (min-resolution: 192dpi) and (min-width: 37.5em),
+           only screen and (-webkit-min-device-pixel-ratio: 2) and (min-width: 37.5em),
+           only screen and (min-width: 125em) {
       background-image: linear-gradient(
         to right bottom, 
         rgba($color-primary-light, 0.801),
@@ -133,7 +133,7 @@
   //height: 50rem; // only for testing purposes (later we will want the content height)
 
   // if 2x screen resolution
-  @media (min-resolution: 192dpi), (-webkit-min-device-pixel-ratio: 2) {
+  @media only screen and (min-resolution: 192dpi), only screen and (-webkit-min-device-pixel-ratio: 2) {
     background-image: linear-gradient(
       100deg, 
       rgba($color-white, .9) 50%, 
@@ -152,7 +152,7 @@
     background-size: cover; // the image occupies the entire height (y direction)  
 
     // if 2x screen resolution
-    @media (min-resolution: 192dpi), (-webkit-min-device-pixel-ratio: 2) {
+    @media only screen and (min-resolution: 192dpi), only screen and (-webkit-min-device-pixel-ratio: 2) {
       background-image: linear-gradient(
         100deg, 
         rgba($color-white, .9) 65%, 
@@ -171,7 +171,7 @@
     url('../img/nat-10-tiny.jpg');
 
     // if 2x screen resolution
-    @media (min-resolution: 192dpi), (-webkit-min-device-pixel-ratio: 2) {
+    @media only screen and (min-resolution: 192dpi), only screen and (-webkit-min-device-pixel-ratio: 2) {
       background-image: linear-gradient(
         to right, 
         rgba($color-white, .9) 0%, 

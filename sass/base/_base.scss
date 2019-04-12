@@ -49,3 +49,8 @@ body{
     padding: 0rem; 
   }
 }
+
+::selection { // Change the effect that happens when we select some text 
+  background-color: $color-primary;
+  color: $color-white;
+}
