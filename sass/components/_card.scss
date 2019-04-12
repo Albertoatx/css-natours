@@ -9,7 +9,7 @@
   &__side {
     height: 100%;      // relative to its parent (currently 52rem)
     transition: all .8s ease;
-    //-webkit-backface-visibility: hidden;
+    -webkit-backface-visibility: hidden; // required by Safari 9, 10, 11, 12
     backface-visibility: hidden; // hide the back part of an element
     border-radius: $border-radius-medium;
     overflow: hidden;  // avoid the card image overlapping its parent element
@@ -68,49 +68,114 @@
   &__picture {
     height: 23rem;
     background-size: cover;
-    background-blend-mode: soft-light; // color,
-    -webkit-clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
-    clip-path: polygon(0 0, 100% 0, 100% 80%, 0 100%);
-    //border-top-left-radius: 3px;  // in my case i DON'T need it: border-radius works!
-    //border-top-right-radius: 3px;
+    //background-blend-mode: soft-light; // color,
+    //-webkit-clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+    //clip-path: polygon(0 0, 100% 0, 100% 80%, 0 100%);
 
+
+    // For browser which DON'T support 'clip-path' and 'blend-mode' 
+    // at least be able to show picture in background use workaround with RGBA 
+    // -------------------------------------------------------------------------
     &--1 {
       background-image: 
-        linear-gradient(to right bottom, $color-secondary-light, $color-secondary-dark),
+        linear-gradient(to right bottom, 
+          rgba($color-secondary-light,.6), 
+          rgba($color-secondary-dark,.6)),
         url(../img/nat-5-small.jpg);
       
       // WARNING! Because above 900px there will be 3 columns -> NO need for big images
       //   Even with 1 column (bellow 900px) + 2x screens res -> images bellow 750px  
-      @media (min-resolution: 192dpi) {
+      @media (min-resolution: 192dpi), (-webkit-min-device-pixel-ratio: 2) {
         background-image: 
-          linear-gradient(to right bottom, $color-secondary-light, $color-secondary-dark),
+          linear-gradient(to right bottom, 
+            rgba($color-secondary-light,.6), 
+            rgba($color-secondary-dark,.6)),
           url('../img/nat-5.jpg');
       }
     }
 
     &--2 {
       background-image: 
-        linear-gradient(to right bottom, $color-primary-light, $color-primary-dark),
-        url(../img/nat-6-small.jpg);
-      
-      @media (min-resolution: 192dpi) {
+      linear-gradient(to right bottom, 
+        rgba($color-primary-light,.6), 
+        rgba($color-primary-dark,.6)),
+      url(../img/nat-6-small.jpg);
+    
+      // WARNING! Because above 900px there will be 3 columns -> NO need for big images
+      //   Even with 1 column (bellow 900px) + 2x screens res -> images bellow 750px  
+      @media (min-resolution: 192dpi), (-webkit-min-device-pixel-ratio: 2) {
         background-image: 
-          linear-gradient(to right bottom, $color-primary-light, $color-primary-dark),                 
+          linear-gradient(to right bottom, 
+            rgba($color-primary-light,.6), 
+            rgba($color-primary-dark,.6)),
           url('../img/nat-6.jpg');
       }
     }
 
     &--3 {
       background-image: 
-        linear-gradient(to right bottom, $color-tertiary-light, $color-tertiary-dark),
-        url(../img/nat-7-small.jpg);
-
-      @media (min-resolution: 192dpi) {
+      linear-gradient(to right bottom, 
+        rgba($color-tertiary-light,.6), 
+        rgba($color-tertiary-dark,.6)),
+      url(../img/nat-7-small.jpg);
+    
+      // WARNING! Because above 900px there will be 3 columns -> NO need for big images
+      //   Even with 1 column (bellow 900px) + 2x screens res -> images bellow 750px  
+      @media (min-resolution: 192dpi), (-webkit-min-device-pixel-ratio: 2) {
         background-image: 
-          linear-gradient(to right bottom, $color-tertiary-light, $color-tertiary-dark),                 
+          linear-gradient(to right bottom, 
+            rgba($color-tertiary-light,.6), 
+            rgba($color-tertiary-dark,.6)),
           url('../img/nat-7.jpg');
       }
     }
+
+    // For browsers which SUPPORT 'clip-path' + 'blend-mode'
+    // -------------------------------------------------------------------------------
+
+    @supports (clip-path: polygon(0 0)) or (-webkit-clip-path: polygon(0 0)) {
+      -webkit-clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+      clip-path: polygon(0 0, 100% 0, 100% 80%, 0 100%);
+      background-blend-mode: soft-light; // color,
+      
+      &--1 {
+        background-image: 
+          linear-gradient(to right bottom, $color-secondary-light, $color-secondary-dark),
+          url(../img/nat-5-small.jpg);
+        
+        // WARNING! Because above 900px there will be 3 columns -> NO need for big images
+        //   Even with 1 column (bellow 900px) + 2x screens res -> images bellow 750px  
+        @media (min-resolution: 192dpi), (-webkit-min-device-pixel-ratio: 2) {
+          background-image: 
+            linear-gradient(to right bottom, $color-secondary-light, $color-secondary-dark),
+            url('../img/nat-5.jpg');
+        }
+      }
+
+      &--2 {
+        background-image: 
+          linear-gradient(to right bottom, $color-primary-light, $color-primary-dark),
+          url(../img/nat-6-small.jpg);
+        
+        @media (min-resolution: 192dpi), (-webkit-min-device-pixel-ratio: 2) {
+          background-image: 
+            linear-gradient(to right bottom, $color-primary-light, $color-primary-dark),                 
+            url('../img/nat-6.jpg');
+        }
+      }
+
+      &--3 {
+        background-image: 
+          linear-gradient(to right bottom, $color-tertiary-light, $color-tertiary-dark),
+          url(../img/nat-7-small.jpg);
+
+        @media (min-resolution: 192dpi), (-webkit-min-device-pixel-ratio: 2) {
+          background-image: 
+            linear-gradient(to right bottom, $color-tertiary-light, $color-tertiary-dark),                 
+            url('../img/nat-7.jpg');
+        }
+      }
+    } // @supports
   }
 
   &__heading {

@@ -1,6 +1,6 @@
 /* 95vh: Height of the element to be 95% of the viewport height */
 .header{
-  height: 95vh;
+  height: 85vh; // if browser does not support clip-path
   background-image: linear-gradient(
     to right, 
     rgba($color-primary-light, 0.801),
@@ -8,14 +8,19 @@
   ), url('../img/hero-small.jpg');
   background-size: cover;
   background-position: top;
-  -webkit-clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
-  clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
-
   position: relative;
+
+  // If browser supports clip-path
+  @supports (clip-path: polygon(0 0)) or (-webkit-clip-path: polygon(0 0)) {
+    -webkit-clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
+    clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
+    height: 95vh;
+  }
 
   // if resolution >= 192dpi (a 2x screen) and width >= 600px (phone)
   // OR if width >= 2000px
   @media (min-resolution: 192dpi) and (min-width: 37.5em),
+         (-webkit-min-device-pixel-ratio: 2) and (min-width: 37.5em),
          (min-width: 125em) {
     background-image: linear-gradient(
       to right, 

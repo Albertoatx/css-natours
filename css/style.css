@@ -92,6 +92,7 @@ body {
 .heading-primary {
   color: white;
   text-transform: uppercase;
+  -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
   margin-bottom: 6rem;
   /* heading-primary--main */
@@ -126,11 +127,14 @@ body {
   font-weight: 700;
   letter-spacing: 2px;
   display: inline-block;
-  background-image: linear-gradient(to right, #7ed56f, #28b485);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+  color: #55c57a;
   transition: all .2s; }
+  @supports (background-clip: text) or (-webkit-background-clip: text) {
+    .heading-secondary {
+      background-image: linear-gradient(to right, #7ed56f, #28b485);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent; } }
   @media only screen and (max-width: 56.25em) {
     .heading-secondary {
       font-size: 3rem; } }
@@ -290,6 +294,7 @@ body {
   .card__side {
     height: 100%;
     transition: all .8s ease;
+    -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
     border-radius: 1rem;
     overflow: hidden;
@@ -320,25 +325,42 @@ body {
     transform: rotateY(0); }
   .card__picture {
     height: 23rem;
-    background-size: cover;
-    background-blend-mode: soft-light;
-    -webkit-clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
-    clip-path: polygon(0 0, 100% 0, 100% 80%, 0 100%); }
+    background-size: cover; }
     .card__picture--1 {
-      background-image: linear-gradient(to right bottom, #ffb900, #ff7730), url(../img/nat-5-small.jpg); }
-      @media (min-resolution: 192dpi) {
+      background-image: linear-gradient(to right bottom, rgba(255, 185, 0, 0.6), rgba(255, 119, 48, 0.6)), url(../img/nat-5-small.jpg); }
+      @media (min-resolution: 192dpi), (-webkit-min-device-pixel-ratio: 2) {
         .card__picture--1 {
-          background-image: linear-gradient(to right bottom, #ffb900, #ff7730), url("../img/nat-5.jpg"); } }
+          background-image: linear-gradient(to right bottom, rgba(255, 185, 0, 0.6), rgba(255, 119, 48, 0.6)), url("../img/nat-5.jpg"); } }
     .card__picture--2 {
-      background-image: linear-gradient(to right bottom, #7ed56f, #28b485), url(../img/nat-6-small.jpg); }
-      @media (min-resolution: 192dpi) {
+      background-image: linear-gradient(to right bottom, rgba(126, 213, 111, 0.6), rgba(40, 180, 133, 0.6)), url(../img/nat-6-small.jpg); }
+      @media (min-resolution: 192dpi), (-webkit-min-device-pixel-ratio: 2) {
         .card__picture--2 {
-          background-image: linear-gradient(to right bottom, #7ed56f, #28b485), url("../img/nat-6.jpg"); } }
+          background-image: linear-gradient(to right bottom, rgba(126, 213, 111, 0.6), rgba(40, 180, 133, 0.6)), url("../img/nat-6.jpg"); } }
     .card__picture--3 {
-      background-image: linear-gradient(to right bottom, #2998ff, #5643fa), url(../img/nat-7-small.jpg); }
-      @media (min-resolution: 192dpi) {
+      background-image: linear-gradient(to right bottom, rgba(41, 152, 255, 0.6), rgba(86, 67, 250, 0.6)), url(../img/nat-7-small.jpg); }
+      @media (min-resolution: 192dpi), (-webkit-min-device-pixel-ratio: 2) {
         .card__picture--3 {
-          background-image: linear-gradient(to right bottom, #2998ff, #5643fa), url("../img/nat-7.jpg"); } }
+          background-image: linear-gradient(to right bottom, rgba(41, 152, 255, 0.6), rgba(86, 67, 250, 0.6)), url("../img/nat-7.jpg"); } }
+    @supports (clip-path: polygon(0 0)) or (-webkit-clip-path: polygon(0 0)) {
+      .card__picture {
+        -webkit-clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+        clip-path: polygon(0 0, 100% 0, 100% 80%, 0 100%);
+        background-blend-mode: soft-light; }
+        .card__picture--1 {
+          background-image: linear-gradient(to right bottom, #ffb900, #ff7730), url(../img/nat-5-small.jpg); }
+          @media (min-resolution: 192dpi), (-webkit-min-device-pixel-ratio: 2) {
+            .card__picture--1 {
+              background-image: linear-gradient(to right bottom, #ffb900, #ff7730), url("../img/nat-5.jpg"); } }
+        .card__picture--2 {
+          background-image: linear-gradient(to right bottom, #7ed56f, #28b485), url(../img/nat-6-small.jpg); }
+          @media (min-resolution: 192dpi), (-webkit-min-device-pixel-ratio: 2) {
+            .card__picture--2 {
+              background-image: linear-gradient(to right bottom, #7ed56f, #28b485), url("../img/nat-6.jpg"); } }
+        .card__picture--3 {
+          background-image: linear-gradient(to right bottom, #2998ff, #5643fa), url(../img/nat-7-small.jpg); }
+          @media (min-resolution: 192dpi), (-webkit-min-device-pixel-ratio: 2) {
+            .card__picture--3 {
+              background-image: linear-gradient(to right bottom, #2998ff, #5643fa), url("../img/nat-7.jpg"); } } }
   .card__heading {
     font-size: 2.8rem;
     font-weight: 300;
@@ -486,10 +508,13 @@ body {
     font-size: 6rem;
     margin-bottom: .5rem;
     display: inline-block;
-    background-image: linear-gradient(to right, #7ed56f, #28b485);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent; }
+    color: #55c57a; }
+    @supports (background-clip: text) or (-webkit-background-clip: text) {
+      .feature-box__icon {
+        background-image: linear-gradient(to right, #7ed56f, #28b485);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent; } }
     @media only screen and (max-width: 56.25em) {
       .feature-box__icon {
         margin-bottom: 0; } }
@@ -614,6 +639,11 @@ body {
     }
   }  
    */ }
+  @supports (-webkit-backdrop-filter: blur(10px)) or (backdrop-filter: blur(10px)) {
+    .popup {
+      -webkit-backdrop-filter: blur(10px);
+      backdrop-filter: blur(10px);
+      background-color: rgba(0, 0, 0, 0.3); } }
   .popup__content {
     width: 75%;
     background-color: white;
@@ -723,15 +753,20 @@ body {
     clear: both;
     /* clear both floats: so float left and float right */ }
   .story__shape {
-    -webkit-shape-outside: circle(50% at 50% 50%);
-    shape-outside: circle(50% at 50% 50%);
     float: left;
     width: 15rem;
     height: 15rem;
-    -webkit-clip-path: circle(50% at 50% 50%);
-    clip-path: circle(50% at 50% 50%);
     transform: translateX(-3rem) skewX(12deg);
-    position: relative; }
+    position: relative;
+    border-radius: 50%;
+    overflow: hidden; }
+    @supports (clip-path: polygon(0 0)) or (-webkit-clip-path: polygon(0 0)) {
+      .story__shape {
+        -webkit-shape-outside: circle(50% at 50% 50%);
+        shape-outside: circle(50% at 50% 50%);
+        -webkit-clip-path: circle(50% at 50% 50%);
+        clip-path: circle(50% at 50% 50%);
+        border-radius: none; } }
     @media only screen and (max-width: 37.5em) {
       .story__shape {
         transform: translateX(-3rem) skewX(0); } }
@@ -871,16 +906,19 @@ body {
 
 /* 95vh: Height of the element to be 95% of the viewport height */
 .header {
-  height: 95vh;
+  height: 85vh;
   background-image: linear-gradient(to right, rgba(126, 213, 111, 0.801), rgba(40, 180, 133, 0.801)), url("../img/hero-small.jpg");
   background-size: cover;
   background-position: top;
-  -webkit-clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
-  clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
   position: relative;
   /* top & left position is from 'logo-box' parent element (the .header) */
   /* top & left position is from 'text-box' parent element (the .header) */ }
-  @media (min-resolution: 192dpi) and (min-width: 37.5em), (min-width: 125em) {
+  @supports (clip-path: polygon(0 0)) or (-webkit-clip-path: polygon(0 0)) {
+    .header {
+      -webkit-clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
+      clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
+      height: 95vh; } }
+  @media (min-resolution: 192dpi) and (min-width: 37.5em), (-webkit-min-device-pixel-ratio: 2) and (min-width: 37.5em), (min-width: 125em) {
     .header {
       background-image: linear-gradient(to right, rgba(126, 213, 111, 0.801), rgba(40, 180, 133, 0.801)), url("../img/hero.jpg"); } }
   @media only screen and (max-width: 56.25em) {
@@ -1073,7 +1111,7 @@ body {
     background-image: linear-gradient(to right bottom, rgba(126, 213, 111, 0.801), rgba(40, 180, 133, 0.801)), url("../img/nat-4.jpg");
     background-size: cover;
     z-index: -1; }
-    @media (min-resolution: 192dpi) and (min-width: 37.5em), (min-width: 125em) {
+    @media (min-resolution: 192dpi) and (min-width: 37.5em), (-webkit-min-device-pixel-ratio: 2) and (min-width: 37.5em), (min-width: 125em) {
       .section-features::after {
         background-image: linear-gradient(to right bottom, rgba(126, 213, 111, 0.801), rgba(40, 180, 133, 0.801)), url("../img/nat-4-large.jpg"); } }
 
@@ -1104,20 +1142,20 @@ body {
   background-size: 100%;
   border-radius: 3px;
   box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.2); }
-  @media (min-resolution: 192dpi) {
+  @media (min-resolution: 192dpi), (-webkit-min-device-pixel-ratio: 2) {
     .book {
       background-image: linear-gradient(100deg, rgba(255, 255, 255, 0.9) 50%, transparent 50%), url("../img/nat-10-large.jpg"); } }
   @media only screen and (max-width: 75em) {
     .book {
       background-image: linear-gradient(100deg, rgba(255, 255, 255, 0.9) 65%, transparent 65%), url("../img/nat-10.jpg");
       background-size: cover; } }
-  @media only screen and (max-width: 75em) and (min-resolution: 192dpi) {
+  @media only screen and (max-width: 75em) and (min-resolution: 192dpi), only screen and (max-width: 75em) and (-webkit-min-device-pixel-ratio: 2) {
     .book {
       background-image: linear-gradient(100deg, rgba(255, 255, 255, 0.9) 65%, transparent 65%), url("../img/nat-10-large.jpg"); } }
   @media only screen and (max-width: 56.25em) {
     .book {
       background-image: linear-gradient(to right, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.9) 100%), url("../img/nat-10-tiny.jpg"); } }
-  @media only screen and (max-width: 56.25em) and (min-resolution: 192dpi) {
+  @media only screen and (max-width: 56.25em) and (min-resolution: 192dpi), only screen and (max-width: 56.25em) and (-webkit-min-device-pixel-ratio: 2) {
     .book {
       background-image: linear-gradient(to right, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.9) 100%, transparent 65%), url("../img/nat-10-small.jpg"); } }
   .book__form {

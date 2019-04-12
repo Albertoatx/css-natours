@@ -22,10 +22,18 @@
     margin-bottom: .5rem;  
 
     display: inline-block;
-    background-image: linear-gradient(to right, $color-primary-light, $color-primary-dark);
-    -webkit-background-clip: text; // Making that gradient effect happen behind the text.
-    background-clip: text;         // Also define the standard property for compatibility
-    color: transparent;            // Make text transparent to see the background image
+    //background-image: linear-gradient(to right, $color-primary-light, $color-primary-dark);
+    //-webkit-background-clip: text; // Making that gradient effect happen behind the text.
+    //background-clip: text;         // Also define the standard property for compatibility
+    //color: transparent;            // Make text transparent to see the background image
+    color: $color-primary;           // For browsers which don't support 'background-clip' (f.e IE11)
+
+    @supports (background-clip: text) or (-webkit-background-clip: text) {
+      background-image: linear-gradient(to right, $color-primary-light, $color-primary-dark);
+      -webkit-background-clip: text; // Making that gradient effect happen behind the text.
+      background-clip: text;         // Also define the standard property for compatibility
+      color: transparent;            // Make text transparent to see the background image
+    }
 
     @include respond(tab-port) {  // is width < tab-port 
       margin-bottom: 0; 
